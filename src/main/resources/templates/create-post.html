@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Post</title>
+<link rel="stylesheet" th:href="@{/styles/index.css}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body class="create-post">
+	<div>
+		<h1 class="text-white bg-primary" >ProConnect</h1>
+	</div>
+	<div class="create-post-div ml-5">
+		<h4 class="text-white text-center">Create Post</h4>
+		<form th:action="@{'/create-post/'+${user.email}}" th:object="${posts}" method="post">
+			<input type="hidden" name="id" value="">
+			<input type="hidden" name="email" th:value="${user.email}">
+			<input type="hidden" name="name" th:value="${name}">
+		  <div class="form-group">
+		    <label for="title" class="text-white">Title</label>
+		    <input type="text" class="form-control" name="title" id="title">
+		  </div>
+		  <div class="form-group">
+		    <label for="content" class="text-white">Content</label>
+		    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+		  </div>
+		  <input type="hidden" name="comments">
+		  <input type="hidden" name="time" value="">
+		  <button type="submit" class="btn btn-primary">Submit Post</button>
+		</form>
+	</div>	
+</body>
+</html>

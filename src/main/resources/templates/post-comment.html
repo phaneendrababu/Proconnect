@@ -1,0 +1,44 @@
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Post Comment</title>
+<link rel="stylesheet" th:href="@{/styles/index.css}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body class="post-comment">
+	<div>
+		<h1 class="text-white bg-primary" >ProConnect</h1>
+	</div>
+	<div class="post-comment-div m-2">
+		<div class="card" style="width: 50rem;">
+		  <div class="card-body">
+		    <h5 class="card-title" th:text="${post.title}"></h5>
+		    <hr>
+		    <p class="card-text" th:text="${post.content}"></p>
+		    <form th:action="@{'/comment/' +${email} +'/'+${post.id}}" th:object="${post_comment}"method="post">
+		    	<input type="hidden" name="id" th:value="${post.id}">
+				<input type="hidden" name="email" th:value="${post.email}">
+				<input type="hidden" name="name" th:value="${post.name}">
+				<input type="hidden" name="title" th:value="${post.title}">
+				<input type="hidden" name="content" th:value="${post.content}">
+				<div class="form-group">
+				    <label for="comments" class="text-primary">Add Your Comment:</label>
+				    <textarea class="form-control" name="comments" id="comments" rows="2"></textarea>
+				</div>
+				<input type="hidden" name="likes" th:value="${post.likes}">
+				<input type="hidden" name="time" th:value="${post.time}">
+				<button type="submit" class="btn btn-primary">Submit Comment</button>
+		    </form>
+		    <p class="text-success">Previous Comments:</p>
+		    <div th:each="prevComment: ${prevComments}">
+				<p th:text="${prevComment}"/></p>
+			</div>
+		  </div>
+		</div>
+	</div>
+
+</body>
+</html>

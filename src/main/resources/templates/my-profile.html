@@ -1,0 +1,59 @@
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>My Profile</title>
+<link rel="stylesheet" th:href="@{/styles/index.css}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body class="my-profile">
+	<!--<form th:action="@{'/my-profile/'+${user.email}}" th:object="${profile}" method="post">
+		<label>Email</label>
+		<input type="text" name="email" th:value="${user.email}" readonly="readonly"><br>
+		<label>College Name</label>
+		<input type="text" name="college" th:value="${college}"><br>
+		<label>Place</label>
+		<input type="text" name="place" th:value="${place}"><br>
+		<input type="submit" value="Update">
+	</form>-->
+	
+	<div>
+		<h1 class="text-white bg-primary" >ProConnect</h1>
+	</div>
+	<div class="my-profile-div ml-5">
+		<h4 class="text-white text-center">Update Profile</h4>
+		<form th:action="@{'/my-profile/'+${user.email}}" th:object="${profile}" method="post">
+		  <div class="form-group">
+		    <label for="email" class="text-white">Email address(can't be changed)</label>
+		    <input type="text" class="form-control" name="email" th:value="${user.email}" id="email" aria-describedby="emailHelp" readonly="readonly">
+		  </div>
+		  <div class="form-group">
+		    <label for="college" class="text-white">College Name</label>
+		    <input type="text" class="form-control" name="college" th:value="${college}" id="college">
+		  </div>
+		  <div class="form-group">
+		    <label for="place" class="text-white">Place/City</label>
+		    <input type="text" class="form-control" name="place" th:value="${place}" id="place">
+		  </div>
+		  <div class="form-group">
+		    <label for="mobile" class="text-white">Mobile No</label>
+		    <input type="text" class="form-control" name="mobile" th:value="${mobile}" id="mobile">
+		  </div>
+		  <div class="form-group">
+		    <label for="skills" class="text-white">Skills</label>
+		    <textarea th:text="${skills}" class="form-control" name="skills" id="skills" th:value="${skills}" rows="2"></textarea>
+		  </div>
+		  <button type="submit" class="btn btn-primary">Update</button>
+		</form>
+	</div>
+</body>
+</html>
+
+<!-- 
+th:field="*{email}"
+th:field="*{college}"
+th:field="*{place}"
+ -->
+ <!-- th:value="${user.email}" -->

@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+.login,.register,.my-profile,.create-post,.add-project,.post-comment{
+	background-image:url("/index.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.login-div{
+	margin-top:200px;
+	font-weight:bold;
+	width:500px;
+}
+.register-div{
+	margin-top:150px;
+	font-weight:bold;
+	width:500px;
+}
+.my-profile-div{
+	margin-top:50px;
+	font-weight:bold;
+	width:500px;
+}
+.create-post-div{
+	margin-top:100px;
+	font-weight:bold;
+	width:500px;
+}
+.add-project-div{
+	margin-top:100px;
+	font-weight:bold;
+	width:500px;
+}
+.split1{
+	width:20%;
+  	position: sticky;
+}
+.split2{
+	width:60%;
+}
+.split3{
+	width:20%;
+}
+.dashboard-tab{
+	width:80%;
+}
