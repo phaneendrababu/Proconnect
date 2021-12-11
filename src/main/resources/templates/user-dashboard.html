@@ -15,16 +15,23 @@
 </div>
 <div class="d-flex flex-row">
 	<div class="d-flex flex-column split1">
-		<!--  
-		<div>
-			<p th:text="${'Hello '+user.email}"></p>
-		</div>
-		-->
+		
+		<!--<div>
+			<p th:text="${'Hello '+userEmail}"></p>
+		</div>-->
+		
 		<div class="list-group dashboard-tab">
 		  <button type="button" th:text="${'Hello '+user.name}" class="list-group-item list-group-item-action" disabled></button>
 		  <a th:href="@{'/my-profile/'+ ${user.email}}" class="list-group-item list-group-item-action">My Profile</a>
 		  <a th:href="@{'/create-post/'+ ${user.email}}" class="list-group-item list-group-item-action">Create Post</a>
 		  <a th:href="@{'/add-project/'+ ${user.email}}" class="list-group-item list-group-item-action">Add Project</a>
+		  <a th:href="@{/view-requests(uid=${userEmail})}" class="list-group-item list-group-item-action">View Project Requests</a>
+		  <a th:href="@{/view-connection-requests(uid=${userEmail})}" class="list-group-item list-group-item-action">View connection Requests</a>
+		  <a th:href="@{/search-users(uid=${userEmail})}" class="list-group-item list-group-item-action">Search Users</a>
+		  <!-- <a th:href="@{/chat-main.html(uid=${userEmail})}" class="list-group-item list-group-item-action">Chat</a>-->
+		  <a th:href="@{/my-posts(uid=${userEmail})}" class="list-group-item list-group-item-action">My Posts</a>
+		  <a th:href="@{/notifications(uid=${userEmail})}" class="list-group-item list-group-item-action">Notifications</a>
+		  
 		  <a th:href="@{/login}" class="list-group-item list-group-item-action">Logout</a>
 		</div>
 	</div>
@@ -35,24 +42,27 @@
 			<p th:text="${posts.content}"/></p>
 			<a th:href="@{'/like/' + ${posts.id}}"><button>Like</button></a>
 			<a th:href="@{'/comment/' + ${posts.id}}">comment</a>-->
-			<a th:href="@{'/comment/' + ${user.email}+'/'+${posts.id}}" class=" mb-2 list-group-item list-group-item-action flex-column align-items-start">
-			    <div class="d-flex w-100 justify-content-between">
-			      <h5 class="mb-1" th:text="${posts.title}"></h5>
-			      <small th:text="${'Posted by '+posts.name}"></small>
-			    </div>
-			    <hr>
-			    <p class="mb-1" th:text="${posts.content}"></p>
-			    <small th:text="${'at '+posts.time}"></small>
-		  	</a>
+			<div>
+				<a th:href="@{'/comment/' + ${user.email}+'/'+${posts.id}}" class=" mb-2 list-group-item list-group-item-action flex-column align-items-start">
+				    <div class="d-flex w-100 justify-content-between">
+				      <h5 class="mb-1" th:text="${posts.title}"></h5>
+				      <small th:text="${'Posted by '+posts.name}"></small>
+				    </div>
+				    <hr>
+				    <p class="mb-1" th:text="${posts.content}"></p>
+				    <small th:text="${'at '+posts.time}"></small>
+			  	</a>
+			</div>
+			
 			
 		</div>
 	</div>
 	<div class="d-flex flex-column split3">
 		<div class="ml-5">
-			<p>All Developers</p>
+			<p>User Profiles</p>
 			<div th:each="ouser: ${userList}">
 				<!-- <h4 th:text="${ouser.email}"/></h4> -->
-				<a th:text="${ouser.name}" th:href="@{'/user-profile/'+ ${ouser.email}}" target="_blank"></a>
+				<a th:text="${ouser.name}" th:href="@{'/user-profile/'+ ${ouser.email}(uid=${userEmail})}" target="_blank"></a>
 			</div>
 		</div>
 	</div>

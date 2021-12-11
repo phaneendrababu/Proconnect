@@ -1,0 +1,90 @@
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Connection Requests</title>
+<link rel="stylesheet" th:href="@{/styles/index.css}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body class="view-requests">
+	<div>
+		<h1 class="text-white bg-primary" >ProConnect</h1>
+	</div>
+	<div class="view-requests-div">
+		<div class="container-fluid">
+			<div th:if="${#lists.isEmpty(connectionList)}">
+				<p class="text-center">...No New Requests...</p>
+			</div>
+			
+			<div th:unless="${#lists.isEmpty(connectionList)}">
+				
+	 			<div class="row">
+	 				<div class="col-2">
+	 					<p>Request Id</p>
+	 				</div>
+	 				<div class="col-2">
+	 					<p>Profile</p>
+	 				</div>
+	 				<div class="col-2">
+	 					<p>Request From</p>
+	 				</div>
+	 				<div class="col-3">
+	 					<p>Action</p>
+	 				</div>
+	 				<div class="col-3">
+	 					<p>Time</p>
+	 				</div>
+	 			</div>
+ 			</div>
+ 			
+ 			<div class="row" th:each="request,iter: ${connectionList}">
+ 				<div class="col-2">
+ 					<p th:text="${request.rid}"></p>
+ 				</div>
+ 				<div class="col-2">
+ 					<a th:href="@{'/user-profile/'+ ${request.from}(uid=${userEmail})}" target="_blank">View Profile</a>
+ 					
+ 				</div>
+ 				<div class="col-2">
+ 					<p th:text="${reqUsersList[iter.index].name}"></p>
+ 				</div>
+ 				<div class="col-3">
+ 					<a th:href="@{accept-connection-request(uid=${userEmail},fromEmail=${request.from})}" class="accept">
+ 						<button type="button" class="btn btn-info">
+ 							Accept
+ 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+								  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+								</svg>
+ 						</button>
+ 					</a>
+ 					<a th:href="@{reject-connection-request(uid=${userEmail},fromEmail=${request.from})}" class="reject">
+ 						<button type="button" class="btn btn-danger">
+ 							Reject
+ 							
+ 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+								  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+							</svg>
+ 						</button>
+ 					</a>
+ 				</div>
+ 				<div class="col-3">
+ 					<p th:text="${request.time}"></p>
+ 				</div>
+ 			</div>
+		</div>
+		
+		
+		<!--
+		<div th:each="request: ${reqList}" class="d-flex flex-column">
+			<div class="d-flex flex-row">
+				<p class="mr-5" th:text="${request.rid}"></p>
+				<p class="mr-5" th:text="${request.fromEmail}"></p>
+				<p class="mr-5" th:text="${request.pid}"></p>
+				<p class="mr-5">Action</p>
+			</div>
+		</div>-->
+	</div>
+</body>
+</html>

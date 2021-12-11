@@ -29,6 +29,14 @@
 	font-weight:bold;
 	width:500px;
 }
+.view-requests-div{
+	margin-top:20px;
+	font-weight:bold;
+}
+.search-users-div{
+	margin-top:20px;
+	font-weight:bold;
+}
 .split1{
 	width:20%;
   	position: sticky;
@@ -41,4 +49,11 @@
 }
 .dashboard-tab{
 	width:80%;
+}
+.req.heading
+{
+	width:100px;
+}
+.accept,.reject{
+	text-decoration: none !important;
 }

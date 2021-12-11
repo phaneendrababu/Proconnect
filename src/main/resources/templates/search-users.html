@@ -1,0 +1,112 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Users</title>
+<link rel="stylesheet" th:href="@{/styles/index.css}"/>
+<script th:src="@{/scripts/index.js}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body th:attr="onload=|demo2();|">
+<!--  
+'demo1(\'' + ${profiles[0].college} + '\' );'
+th:attr="onload=|demo2('${profiles[0].college}')|"
+-->
+	<div>
+		<h1 class="text-white bg-primary" >ProConnect</h1>
+	</div>
+			<!-- <input type="text" name="searchdata">
+			<a th:href=@{search-users(uid=${userEmail},sdata=searchdata)}>
+				<button>
+				search
+				</button>
+			</a>-->
+		<form th:action="@{'/search-users/'}">
+			<input type="hidden" name="uid" th:value="${userEmail}">
+				<div class="d-flex flex-row ml-2">
+					<div class="form-group mr-2" style="width:500px;">
+				    	<input type="text" class="form-control" name="searchdata" placeholder="Search by name or college or place or skill">
+				  	</div>	
+					<button type="submit" class="btn btn-primary">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16" style="vertical-align: -0.125em;">
+						  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+						</svg>
+						Search
+					</button>
+				</div>
+				
+	   </form>
+		
+	<div class="search-users-div">
+		<div class="container-fluid">
+			<div class="row border border-info">
+ 				<div class="col-2 border-right border-info">
+ 					<p>Name</p>
+ 				</div>
+ 				<div class="col-2 border-right border-info">
+ 					<p>College</p>
+ 				</div>
+ 				<div class="col-2 border-right border-info">
+ 					<p>Place</p>
+ 				</div>
+ 				<div class="col-4 border-right border-info">
+ 					<p>Skills</p>
+ 				</div>
+ 				<div class="col-2 border-right border-info">
+ 					<p>Profile</p>
+ 				</div>
+	 		</div>
+	 		
+	 		<div class="row border-bottom border-primary" th:each="profile,iter:${profiles}">
+	 			
+ 				<div class="col-2 border-right border-primary">
+ 					<p th:text="${users[iter.index].name}"></p>
+ 				</div>
+ 				<div class="col-2 border-right border-primary">
+ 					<p th:text="${profile.college}"></p>
+ 				</div>
+ 				<div class="col-2 border-right border-primary">
+ 					<p th:text="${profile.place}"></p>
+ 				</div>
+ 				<div class="col-4 border-right border-primary">
+ 					<p th:text="${profile.skills}"></p>
+ 				</div>
+ 				<div class="col-2 border-right border-primary">
+ 					<a th:href="@{'/user-profile/'+ ${profile.email}(uid=${userEmail})}" target="_blank">View Profile</a>
+ 				</div>
+	 		</div>
+	 		
+	 		<div class="row border-bottom border-primary" th:each="fprofile,iter:${filteredProfiles}">
+	 			
+ 				<div class="col-2 border-right border-primary">
+ 					<p th:text="${filteredUsers[iter.index].name}"></p>
+ 				</div>
+ 				<div class="col-2 border-right border-primary">
+ 					<p th:text="${fprofile.college}"></p>
+ 				</div>
+ 				<div class="col-2 border-right border-primary">
+ 					<p th:text="${fprofile.place}"></p>
+ 				</div>
+ 				<div class="col-4 border-right border-primary">
+ 					<p th:text="${fprofile.skills}"></p>
+ 				</div>
+ 				<div class="col-2 border-right border-primary">
+ 					<a th:href="@{'/user-profile/'+ ${fprofile.email}(uid=${userEmail})}" target="_blank">View Profile</a>
+ 				</div>
+	 		</div>
+	 		
+		</div>
+	</div>
+	
+	<script>
+	function demo2(){
+		
+		console.log("ss");
+		
+		
+	}
+	</script>
+</body>
+</html>

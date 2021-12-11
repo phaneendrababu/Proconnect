@@ -1,0 +1,45 @@
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<title>Notifications</title>
+<link rel="stylesheet" th:href="@{/styles/index.css}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div>
+		<h1 class="text-white bg-primary" >ProConnect</h1>
+	</div>
+	<div th:each="request,iter: ${reqList}">
+		<div class="alert alert-primary" role="alert">
+			<span>Project Request by</span>
+			<span class="font-weight-bold"><a th:text="${request.fromEmail}" th:href="@{'/user-profile/'+ ${request.fromEmail}(uid=${userEmail})}" target="_blank"></a></span>
+			<span>for</span>
+			<span th:text="${reqProjectsList[iter.index].title}" class="font-weight-bold"></span>
+			<span>Project at </span>
+			<span th:text="${request.time}" class="font-weight-bold"></span>
+			<span><a th:href="@{/view-requests(uid=${userEmail})}" class="text-danger font-weight-bold">View Request</a></span>
+		</div>
+	</div>
+	
+	<div th:each="request,iter: ${acceptedList}">
+		<div class="alert alert-success" role="alert">
+			<span>Request for Project </span>
+			<span th:text="${accProjectsList[iter.index].title}" class="font-weight-bold"></span>
+			<span>was accepted at</span>
+			<span th:text="${request.time}" class="font-weight-bold"></span>
+		</div>
+	</div>
+	
+	<div th:each="request,iter: ${rejectedList}">
+		<div class="alert alert-danger" role="alert">
+			<span>Request for Project </span>
+			<span th:text="${rejProjectsList[iter.index].title}" class="font-weight-bold"></span>
+			<span>was rejected at</span>
+			<span th:text="${request.time}" class="font-weight-bold"></span>
+		</div>
+	</div>
+	
+</body>
+</html>
