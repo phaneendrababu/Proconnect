@@ -1,10 +1,12 @@
 package com.example.ProConnect.model;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.example.ProConnect.utilities.Utilities;
+
 
 @Document(collection = "projects")
 public class Project {
@@ -17,8 +19,7 @@ public class Project {
 	private String link;
 	private String type;
 	
-	@Autowired
-	private Utilities utilities;
+
 	
 	
 	public Project()
@@ -29,7 +30,7 @@ public class Project {
 	
 	
 	public Project(String id, String email, String title, String content, String link, String type) {
-		this.id = utilities.generateRandomString(20);
+		this.id = generateRandomString(20);
 		this.email = email;
 		this.title = title;
 		this.content = content;
@@ -42,7 +43,7 @@ public class Project {
 	}
 
 	public void setId() {
-		this.id=utilities.generateRandomString(20);
+		this.id=generateRandomString(20);
 	}
 	
 	public void setId(String id) {
@@ -97,5 +98,42 @@ public class Project {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static String generateRandomString(int n)
+    {
+  
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"
+                                    + "abcdefghijklmnopqrstuvxyz";
+  
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+  
+        for (int i = 0; i < n; i++) {
+  
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                = (int)(AlphaNumericString.length()
+                        * Math.random());
+  
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                          .charAt(index));
+        }
+  
+        return sb.toString();
+    }
 	
 }

@@ -1,9 +1,12 @@
-package com.example.ProConnect.utilities;
+package com.example.ProConnect.utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Utilities {
+import org.springframework.stereotype.Service;
+
+@Service
+public class Utils {
 
 	public String generateRandomString(int n)
     {

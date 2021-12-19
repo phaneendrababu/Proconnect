@@ -1,11 +1,14 @@
 package com.example.ProConnect.model;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.example.ProConnect.utilities.Utilities;
+
 
 @Document(collection = "connections")
 public class Connection {
@@ -17,15 +20,13 @@ public class Connection {
 	private String status;
 	private String time;
 	
-	@Autowired
-	private Utilities utilities;
 	
 	public Connection() {
 		
 	}
 
 	public Connection(String from, String to, String status) {
-		this.rid = utilities.generateRandomString(20);
+		this.rid = generateRandomString(20);
 		this.from = from;
 		this.to = to;
 		this.status = status;
@@ -41,7 +42,7 @@ public class Connection {
 	}
 	
 	public void setRid() {
-		this.rid = utilities.generateRandomString(20);
+		this.rid = generateRandomString(20);
 	}
 	
 	public String getFrom() {
@@ -73,10 +74,57 @@ public class Connection {
 	}
 
 	public void setTime() {
-		this.time=utilities.generateTime();
+		this.time=generateTime();
 	}
 	public void setTime(String time) {
 		this.time=time;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static String generateRandomString(int n)
+    {
+  
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"
+                                    + "abcdefghijklmnopqrstuvxyz";
+  
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+  
+        for (int i = 0; i < n; i++) {
+  
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                = (int)(AlphaNumericString.length()
+                        * Math.random());
+  
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                          .charAt(index));
+        }
+  
+        return sb.toString();
+    }
+	
+	public static String generateTime()
+	{
+		LocalDateTime myDateObj = LocalDateTime.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		return myDateObj.format(myFormatObj);
+	}
 }

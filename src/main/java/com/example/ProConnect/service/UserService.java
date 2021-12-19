@@ -89,7 +89,7 @@ public class UserService
 	
 	public void showUserDashboardPage(User user,Model model)
 	{
-		List<Posts> postsList=PostsRepository.findAll(Sort.by(Sort.Direction.DESC, "time"));
+		List<Posts> postsList=PostsRepository.findAll(Sort.by(Sort.Direction.ASC, "time"));
 		
 		List<User> userList=UserRepository.findAll();
 		userList=removeUser(userList,user);
@@ -106,8 +106,6 @@ public class UserService
 		List<User> userList=UserRepository.findAll();
 		
 		List<User> updatedUserList=removeUser(userList, userEmail);
-		
-		
 			
 		if(sdata.contentEquals(""))
 		{

@@ -1,15 +1,17 @@
 package com.example.ProConnect.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.example.ProConnect.utilities.Utilities;
+
 
 @Document(collection = "posts")
-public class Posts {
+public class Posts{
 
 	@Id
 	private String id;
@@ -21,8 +23,6 @@ public class Posts {
 	private int likes;
 	private String time;
 	
-	@Autowired
-	private Utilities utilities;
 	
 	public Posts()
 	{
@@ -31,14 +31,14 @@ public class Posts {
 	
 	
 	public Posts(String id,String email,String name,String title, String content,List<String> comments,int likes, String time) {
-		this.id=utilities.generateRandomString(20);
+		this.id=generateRandomString(20);
 		this.email = email;
 		this.name=name;
 		this.title = title;
 		this.content = content;
 		this.comments=comments;
 		this.likes=likes;
-		this.time=utilities.generateTime();
+		this.time=generateTime();
 	}
 	
 	
@@ -49,7 +49,7 @@ public class Posts {
 	}
 
 	public void setTime() {
-		this.time=utilities.generateTime();
+		this.time=generateTime();
 	}
 	public void setTime(String time) {
 		this.time=time;
@@ -78,7 +78,7 @@ public class Posts {
 	}
 
 	public void setId() {
-		this.id=utilities.generateRandomString(20);
+		this.id=generateRandomString(20);
 	}
 	
 	public void setId(String id) {
@@ -118,5 +118,63 @@ public class Posts {
 		return "Posts [id=" + id + ", email=" + email + ", name=" + name + ", title=" + title + ", content=" + content
 				+ ", comments=" + comments + ", likes=" + likes + ", time=" + time + "]";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static String generateRandomString(int n)
+    {
+  
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                    + "0123456789"
+                                    + "abcdefghijklmnopqrstuvxyz";
+  
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+  
+        for (int i = 0; i < n; i++) {
+  
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                = (int)(AlphaNumericString.length()
+                        * Math.random());
+  
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                          .charAt(index));
+        }
+  
+        return sb.toString();
+    }
+	
+	public static String generateTime()
+	{
+		LocalDateTime myDateObj = LocalDateTime.now();
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		return myDateObj.format(myFormatObj);
+	}
+	
 	
 }

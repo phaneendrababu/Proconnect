@@ -60,8 +60,6 @@ public class ProfileService
 		List<Profile> profiles=ProfileRepository.findAll(exampleProfile);
 		
 		
-		
-		
 		Connection connection1=new Connection();
 		connection1.setFrom(userEmail);
 		connection1.setTo(email);
